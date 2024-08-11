@@ -1,10 +1,31 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+export default {
+  props: {
+    multiplier: {
+      type: Number,
+      default() {
+        return 1
+      },
+    },
+  },
+  data() {
+    return {
+      input: 0,
+    }
+  },
+  computed: {
+    result() {
+      return this.multiplier * this.input
+    },
+  },
+}
+</script>
 
 <template>
   <div class="cell">
     <input class="checkbox" type="checkbox" name="" id="" />
-    <input class="number" type="number" name="" id="" />
-    <span></span>
+    <input class="number" type="number" name="" id="" v-model="input" />
+    <span class="result">{{ result }}</span>
   </div>
 </template>
 
@@ -21,6 +42,11 @@
 
 .number {
   height: 2rem;
-  width: 3rem;
+  width: 2rem;
+}
+
+.result {
+  width: 2rem;
+  text-align: center;
 }
 </style>

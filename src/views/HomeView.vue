@@ -39,10 +39,10 @@ export default defineComponent({
     <div v-for="game in games" :key="game.name">
       <div class="game-row">
         <header-column-cell :gameName="game.name" />
-        <game-cell />
-        <game-cell />
-        <game-cell />
-        <game-cell />
+        <game-cell :multiplier="game.points" />
+        <game-cell :multiplier="game.points" />
+        <game-cell :multiplier="game.points" />
+        <game-cell :multiplier="game.points" />
       </div>
     </div>
   </main>

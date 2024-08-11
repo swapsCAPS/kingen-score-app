@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .cell {
-  min-width: 5rem;
+  min-width: 6rem;
 }
 
 .cell h4 {
