@@ -4,20 +4,13 @@ import HeaderColumnCell from '@/components/HeaderColumnCell.vue'
 import { defineComponent } from 'vue'
 
 const games = () => [
-  { unicode: '', name: 'harten', points: -30 },
-  { unicode: '', name: 'slagen', points: -50 },
-  { unicode: '', name: 'laatste 2', points: -140 },
-  { unicode: '', name: 'vrouwen', points: -100 },
-  { unicode: '', name: 'mannen', points: -60 },
-  { unicode: '', name: 'harten heer', points: -400 },
-  { unicode: '', name: 'troef 1e', points: 50 },
-  { unicode: '', name: 'troef 2e', points: 50 },
-  { unicode: '', name: 'troef 3e', points: 50 },
-  { unicode: '', name: 'troef 4e', points: 50 },
-  { unicode: '', name: 'troef 5e', points: 50 },
-  { unicode: '', name: 'troef 6e', points: 50 },
-  { unicode: '', name: 'troef 7e', points: 50 },
-  { unicode: '', name: 'troef 8e', points: 50 },
+  { unicode: '', name: 'harten', points: -30, aantal: 13, rows: 2 },
+  { unicode: '', name: 'slagen', points: -50, aantal: 13, rows: 2 },
+  { unicode: '', name: 'laatste 2', points: -140, aantal: 2, rows: 2 },
+  { unicode: '', name: 'vrouwen', points: -100, aantal: 4, rows: 2 },
+  { unicode: '', name: 'mannen', points: -60, aantal: 8, rows: 2 },
+  { unicode: '', name: 'harten heer', points: -400, aantal: 1, rows: 2 },
+  { unicode: '', name: 'troef', points: 50, aantal: 13, rows: 8 },
 ]
 
 export default defineComponent({
@@ -37,12 +30,14 @@ export default defineComponent({
 <template>
   <main>
     <div v-for="game in games" :key="game.name">
-      <div class="game-row">
-        <header-column-cell :gameName="game.name" />
-        <game-cell :multiplier="game.points" />
-        <game-cell :multiplier="game.points" />
-        <game-cell :multiplier="game.points" />
-        <game-cell :multiplier="game.points" />
+      <div v-for="row in game.rows">
+        <div class="game-row">
+        <header-column-cell :gameName="game.name" />:
+        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+      </div>
       </div>
     </div>
   </main>
