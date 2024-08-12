@@ -7,6 +7,18 @@ export default {
         return 1
       },
     },
+    rows: {
+      type: Number,
+      default() {
+        return 1
+      }
+    },
+    aantal:{ 
+      type: Number,
+      default() {
+        return 1
+      }
+    }
   },
   data() {
     return {
@@ -15,7 +27,7 @@ export default {
   },
   computed: {
     result() {
-      return this.multiplier * this.input
+      return this.multiplier * parseInt(this.input)
     },
   },
 }
@@ -24,7 +36,10 @@ export default {
 <template>
   <div class="cell">
     <input class="checkbox" type="checkbox" name="" id="" />
-    <input class="number" type="number" name="" id="" v-model="input" />
+    <select class= "number" v-model="input">
+      <option v-for="n in aantal+1" >{{ n-1 }}</option>
+    </select>
+    <!-- <input class="number" type="number" name="" id="" v-model="input2" /> -->
     <span class="result">{{ result }}</span>
   </div>
 </template>
@@ -42,7 +57,7 @@ export default {
 
 .number {
   height: 2rem;
-  width: 2rem;
+  width: 3rem;
 }
 
 .result {
