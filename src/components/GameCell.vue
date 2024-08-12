@@ -37,7 +37,7 @@ export default {
   <div class="cell">
     <input class="checkbox" type="checkbox" name="" id="" />
     <select class= "number" v-model="input">
-      <option v-for="n in aantal" >{{ n }}</option>
+      <option v-for="n in aantal+1" >{{ n-1 }}</option>
     </select>
     <!-- <input class="number" type="number" name="" id="" v-model="input2" /> -->
     <span class="result">{{ result }}</span>
