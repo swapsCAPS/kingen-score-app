@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     result() {
-      return this.multiplier * parseInt(this.input)
+      return this.multiplier * this.input
     },
   },
 }

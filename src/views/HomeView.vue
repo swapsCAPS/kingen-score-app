@@ -49,6 +49,9 @@ export default defineComponent({
         </div>
       </div>
     </div>
+    <div class="footer">
+      <h2>Totalen</h2>
+    </div>
   </main>
 </template>
 
