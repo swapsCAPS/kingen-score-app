@@ -9,7 +9,7 @@ const games = () => [
   { unicode: '', name: 'laatste 2', points: -140, aantal: 2, rows: 2 },
   { unicode: '', name: 'vrouwen', points: -100, aantal: 4, rows: 2 },
   { unicode: '', name: 'mannen', points: -60, aantal: 8, rows: 2 },
-  { unicode: '', name: 'harten heer', points: -400, aantal: 1, rows: 2 },
+  { unicode: '', name: 'harten Hr', points: -400, aantal: 1, rows: 2 },
   { unicode: '', name: 'troef', points: 50, aantal: 13, rows: 8 },
 ]
 
@@ -29,15 +29,24 @@ export default defineComponent({
 
 <template>
   <main>
+    <div class="header">
+      <h1>Kingen</h1>
+    </div>
+    <div>
+      <h2>Negatief</h2>
+    </div>
     <div v-for="game in games" :key="game.name">
-      <div v-for="row in game.rows">
+      <div v-for="row in game.rows" :key="row.valueOf">
+        <div v-if="game.name==='troef'">
+          <h2 v-if="row===1">Positief</h2> 
+        </div>
         <div class="game-row">
-        <header-column-cell :gameName="game.name" />:
-        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
-        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
-        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
-        <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
-      </div>
+          <header-column-cell :gameName="game.name" :row="row"/>
+          <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+          <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+          <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+          <game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal"/>
+        </div>
       </div>
     </div>
   </main>
