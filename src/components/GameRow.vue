@@ -19,13 +19,13 @@ export default {
 <template>
 	<div class="game-row">
 		<header-column-cell :gameName="game.name" />
-		<game-cell :multiplier="game.points" :choices="game.players.player1.cardsLeft"
+		<game-cell :multiplier="game.points" :choices="game.players.player1.cardsLeft" :choice="game.players.player1.choice"
 			@cardsPlayed="(n) => $emit('cardsPlayed', 'player1', n)" />
-		<game-cell :multiplier="game.points" :choices="game.players.player2.cardsLeft"
+		<game-cell :multiplier="game.points" :choices="game.players.player2.cardsLeft" :choice="game.players.player2.choice"
 			@cardsPlayed="(n) => $emit('cardsPlayed', 'player2', n)" />
-		<game-cell :multiplier="game.points" :choices="game.players.player3.cardsLeft"
+		<game-cell :multiplier="game.points" :choices="game.players.player3.cardsLeft" :choice="game.players.player3.choice"
 			@cardsPlayed="(n) => $emit('cardsPlayed', 'player3', n)" />
-		<game-cell :multiplier="game.points" :choices="game.players.player4.cardsLeft"
+		<game-cell :multiplier="game.points" :choices="game.players.player4.cardsLeft" :choice="game.players.player4.choice"
 			@cardsPlayed="(n) => $emit('cardsPlayed', 'player4', n)" />
 	</div>
 </template>

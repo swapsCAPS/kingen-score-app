@@ -15,6 +15,12 @@ export default {
 			default() {
 				return 1
 			}
+		},
+		choice: {
+			type: Number,
+			default() {
+				return 0
+			}
 		}
 	},
 	data() {
@@ -24,7 +30,7 @@ export default {
 	},
 	computed: {
 		result() {
-			return this.multiplier * this.input
+			return this.multiplier * this.choice
 		},
 	},
 	methods: {
