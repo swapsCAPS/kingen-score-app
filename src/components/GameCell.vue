@@ -1,4 +1,7 @@
 <script lang="ts">
+import { useStore } from '@/stores';
+import { mapActions } from 'pinia';
+
 export default {
 	props: {
 		multiplier: {
@@ -7,7 +10,7 @@ export default {
 				return 1
 			},
 		},
-		aantal: {
+		choices: {
 			type: Number,
 			default() {
 				return 1
@@ -24,14 +27,19 @@ export default {
 			return this.multiplier * this.input
 		},
 	},
+	methods: {
+		cardsPlayed(event) {
+			this.$emit('cardsPlayed', event.target.value)
+		}
+	}
 }
 </script>
 
 <template>
 	<div class="cell">
 		<input class="checkbox" type="checkbox" name="" id="" />
-		<select class="number" v-model="input">
-			<option v-for="(n, i) in aantal + 1" :key="i">{{ n - 1 }}</option>
+		<select class="number" @change="cardsPlayed">
+			<option v-for="n in choices + 1" :key="n">{{ n - 1 }}</option>
 		</select>
 		<span class="result">{{ result }}</span>
 	</div>
