@@ -3,56 +3,44 @@ import GameCell from '@/components/GameCell.vue'
 import HeaderColumnCell from '@/components/HeaderColumnCell.vue'
 import { defineComponent } from 'vue'
 
-const games = () => [
-  { unicode: '', name: 'harten', points: -30 },
-  { unicode: '', name: 'slagen', points: -50 },
-  { unicode: '', name: 'laatste 2', points: -140 },
-  { unicode: '', name: 'vrouwen', points: -100 },
-  { unicode: '', name: 'mannen', points: -60 },
-  { unicode: '', name: 'harten heer', points: -400 },
-  { unicode: '', name: 'troef 1e', points: 50 },
-  { unicode: '', name: 'troef 2e', points: 50 },
-  { unicode: '', name: 'troef 3e', points: 50 },
-  { unicode: '', name: 'troef 4e', points: 50 },
-  { unicode: '', name: 'troef 5e', points: 50 },
-  { unicode: '', name: 'troef 6e', points: 50 },
-  { unicode: '', name: 'troef 7e', points: 50 },
-  { unicode: '', name: 'troef 8e', points: 50 },
-]
+import { mapStores } from 'pinia'
+
+import { useStore } from "@/stores"
 
 export default defineComponent({
-  components: {
-    GameCell,
-    HeaderColumnCell,
-  },
+	components: {
+		GameCell,
+		HeaderColumnCell,
+	},
 
-  data() {
-    return {
-      games: games(),
-    }
-  },
+	computed: {
+		...mapStores(useStore),
+	},
+
 })
 </script>
 
 <template>
-  <main>
-    <div v-for="game in games" :key="game.name">
-      <div class="game-row">
-        <header-column-cell :gameName="game.name" />
-        <game-cell :multiplier="game.points" />
-        <game-cell :multiplier="game.points" />
-        <game-cell :multiplier="game.points" />
-        <game-cell :multiplier="game.points" />
-      </div>
-    </div>
-  </main>
+	<main>
+		<div v-for="game in stateStore.games" :key="game.name">
+			<div v-for="(row, i) in game.rows" :key="game.name + i">
+				<div class="game-row">
+					<header-column-cell :gameName="game.name" />:
+					<game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal" />
+					<game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal" />
+					<game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal" />
+					<game-cell :multiplier="game.points" :rows="game.rows" :aantal="game.aantal" />
+				</div>
+			</div>
+		</div>
+	</main>
 </template>
 
 <style scoped>
 .game-row {
-  display: flex;
-  align-items: center;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+	display: flex;
+	align-items: center;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 </style>
