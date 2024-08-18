@@ -2,31 +2,44 @@
 import { type Game } from '@/stores';
 import GameCell from './GameCell.vue';
 import HeaderColumnCell from './HeaderColumnCell.vue';
-
-const components = { GameCell, HeaderColumnCell }
+import { computed } from "vue"
 
 const props = defineProps<{
 	game: Game
 }>()
 
-</script>
+const emit = defineEmits<{
+	(e: "cardsPlayed", player: string, cards: number): void
+	(e: "gameChosen", player: string, checked: boolean): void
+}>()
 
-<script lang="ts">
-export default {
-}
+const isCorrect = computed(() => (
+	props.game.aantal === Object.values(props.game.players)
+		.map(player => player.cardsPlayed)
+		.reduce((acc, value) => acc + value, 0)
+))
+
+const isChosen = computed(() => (
+	Object.values(props.game.players).some(p => p.hasChosen)
+))
+
 </script>
 
 <template>
 	<div class="game-row">
-		<header-column-cell :gameName="game.name" />
-		<game-cell :multiplier="game.points" :choices="game.players.player1.cardsLeft" :choice="game.players.player1.choice"
-			@cardsPlayed="(n) => $emit('cardsPlayed', 'player1', n)" />
-		<game-cell :multiplier="game.points" :choices="game.players.player2.cardsLeft" :choice="game.players.player2.choice"
-			@cardsPlayed="(n) => $emit('cardsPlayed', 'player2', n)" />
-		<game-cell :multiplier="game.points" :choices="game.players.player3.cardsLeft" :choice="game.players.player3.choice"
-			@cardsPlayed="(n) => $emit('cardsPlayed', 'player3', n)" />
-		<game-cell :multiplier="game.points" :choices="game.players.player4.cardsLeft" :choice="game.players.player4.choice"
-			@cardsPlayed="(n) => $emit('cardsPlayed', 'player4', n)" />
+		<header-column-cell :gameName="game.name" :is-chosen="isChosen" :is-correct="isCorrect" />
+		<game-cell :result="game.points * game.players.player1.cardsPlayed" :cards-left="game.players.player1.cardsLeft"
+			:cardsPlayed="game.players.player1.cardsPlayed" @cardsPlayed="(n) => $emit('cardsPlayed', 'player1', n)"
+			@game-chosen="(b) => $emit('gameChosen', 'player1', b)" />
+		<game-cell :result="game.points * game.players.player2.cardsPlayed" :cards-left="game.players.player2.cardsLeft"
+			:cardsPlayed="game.players.player2.cardsPlayed" @cardsPlayed="(n) => $emit('cardsPlayed', 'player2', n)"
+			@game-chosen="(b) => $emit('gameChosen', 'player2', b)" />
+		<game-cell :result="game.points * game.players.player3.cardsPlayed" :cards-left="game.players.player3.cardsLeft"
+			:cardsPlayed="game.players.player3.cardsPlayed" @cardsPlayed="(n) => $emit('cardsPlayed', 'player3', n)"
+			@game-chosen="(b) => $emit('gameChosen', 'player3', b)" />
+		<game-cell :result="game.points * game.players.player4.cardsPlayed" :cards-left="game.players.player4.cardsLeft"
+			:cardsPlayed="game.players.player4.cardsPlayed" @cardsPlayed="(n) => $emit('cardsPlayed', 'player4', n)"
+			@game-chosen="(b) => $emit('gameChosen', 'player4', b)" />
 	</div>
 </template>
 

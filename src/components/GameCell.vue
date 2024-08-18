@@ -1,51 +1,59 @@
-<script lang="ts">
-import { useStore } from '@/stores';
-import { mapActions } from 'pinia';
+<script setup lang="ts">
 
-export default {
-	props: {
-		multiplier: {
-			type: Number,
-			default() {
-				return 1
-			},
-		},
-		choices: {
-			type: Number,
-			default() {
-				return 1
-			}
-		},
-		choice: {
-			type: Number,
-			default() {
-				return 0
-			}
+import { computed } from "vue"
+
+const props = defineProps({
+	cardsLeft: {
+		type: Number,
+		default() {
+			return 1
 		}
 	},
-	data() {
-		return {
-			input: 0,
+	cardsPlayed: {
+		type: Number,
+		default() {
+			return 0
 		}
 	},
-	computed: {
-		result() {
-			return this.multiplier * this.choice
-		},
+	result: {
+		type: Number,
+		default() {
+			return 0
+		}
 	},
-	methods: {
-		cardsPlayed(event) {
-			this.$emit('cardsPlayed', event.target.value)
+	/**
+	 * Terrible hack
+	 */
+	mode: {
+		type: String,
+		default() {
+			return "input"
 		}
 	}
+})
+
+const emit = defineEmits<{
+	(e: 'gameChosen', value: boolean): void,
+	(e: 'cardsPlayed', cards: number): void
+}>()
+
+function onCardsPlayed(event: Event) {
+	emit("cardsPlayed", parseInt(event.target?.value))
 }
+
+function onGameChosen(event: Event) {
+	emit("gameChosen", event.target?.checked)
+}
+
+const styleObject = computed(() => props.mode === "input" ? { visibility: "visible" } : { visibility: "hidden" })
+
 </script>
 
 <template>
 	<div class="cell">
-		<input class="checkbox" type="checkbox" name="" id="" />
-		<select class="number" @change="cardsPlayed">
-			<option v-for="n in choices + 1" :key="n">{{ n - 1 }}</option>
+		<input :style="styleObject" class="checkbox" @change="onGameChosen" type="checkbox" name="" id="" />
+		<select :style="styleObject" class="number" @change="onCardsPlayed">
+			<option v-for="n in cardsLeft + 1" :key="n">{{ n - 1 }}</option>
 		</select>
 		<span class="result">{{ result }}</span>
 	</div>
@@ -56,6 +64,7 @@ export default {
 	display: flex;
 	align-items: center;
 	border: 1px solid gray;
+	height: 2.4rem;
 }
 
 .checkbox {
@@ -72,7 +81,9 @@ export default {
 
 .result {
 	width: 2rem;
-	text-align: center;
+	text-align: right;
 	flex: 1;
+	margin-left: 0.2rem;
+	margin-right: 0.2rem;
 }
 </style>
