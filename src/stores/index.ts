@@ -36,7 +36,7 @@ const getDefaultPlayersState = (cardsLeft: number): Record<string, GamePlayer> =
 const getDefaultGames = (): Games => ({
   negatief: [
     ...range(1, 3).map((r) => ({
-      name: `harten (${r})`,
+      name: `geen ❤️ (${r})`,
       points: -30,
       aantal: 13,
       players: getDefaultPlayersState(13),
@@ -66,7 +66,7 @@ const getDefaultGames = (): Games => ({
       players: getDefaultPlayersState(8),
     })),
     ...range(1, 3).map((r) => ({
-      name: `harten heer (${r})`,
+      name: `❤️ heer (${r})`,
       points: -400,
       aantal: 1,
       players: getDefaultPlayersState(1),
