@@ -28,7 +28,8 @@ defineProps({
 .cell {
 	display: flex;
 	align-items: center;
-	border: 1px solid gray;
+	border: 1px solid blue;
+	background-color: lightblue;
 	height: 2.4rem;
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;

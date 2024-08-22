@@ -63,8 +63,9 @@ const styleObject = computed(() => props.mode === "input" ? { visibility: "visib
 .cell {
 	display: flex;
 	align-items: center;
-	border: 1px solid gray;
+	border: 1px solid blue;
 	height: 2.4rem;
+	background-color: lightblue;
 }
 
 .checkbox {
@@ -80,7 +81,7 @@ const styleObject = computed(() => props.mode === "input" ? { visibility: "visib
 }
 
 .result {
-	width: 2rem;
+	width: 2.5rem;
 	text-align: right;
 	flex: 1;
 	margin-left: 0.2rem;

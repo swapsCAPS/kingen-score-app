@@ -47,7 +47,5 @@ const isChosen = computed(() => (
 .game-row {
 	display: flex;
 	align-items: center;
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
 }
 </style>

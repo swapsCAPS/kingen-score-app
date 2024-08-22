@@ -10,16 +10,16 @@
 <template>
 	<main>
 		<div class="player-row">
-			<header-column-cell :gameName="'Spelers'" />
-			<div v-for="i in 4"> <input class="player-name" type="text">
-			</div>
+			<header-column-cell :gameName="'👑 Spelers 👑'" />
+			<div v-for="i in 4"> <input class="player-name" type="text" :placeholder="i"></div>
 		</div>
+
 		<div v-for="( game, index) in stateStore.games.negatief" :key="game.name">
-			<game-row :game="game" @cardsPlayed="(player, cards) => stateStore.setCardsLeft('negatief', index, player, cards)"
-				@gameChosen="(player, checked) => stateStore.setGameChosen('negatief', index, player, checked)" />
+				<game-row :game="game" @cardsPlayed="(player, cards) => stateStore.setCardsLeft('negatief', index, player, cards)"
+					@gameChosen="(player, checked) => stateStore.setGameChosen('negatief', index, player, checked)" />
 		</div>
 		<div class="total-row">
-			<header-column-cell :gameName="'Negatief:'" /> <!-- :style="{ visibility: 'hidden' }" -->
+			<header-column-cell :gameName="'negatief ➖'" /> <!-- :style="{ visibility: 'hidden' }" -->
 			<div v-for="(value, player) in stateStore.totalsPerSection.negatief" :key="player">
 				<game-cell :result="value" :mode="'total'" />
 			</div>
@@ -29,13 +29,13 @@
 				@gameChosen="(player, checked) => stateStore.setGameChosen('positief', index, player, checked)" />
 		</div>
 		<div class="total-row">
-			<header-column-cell :gameName="'Positief:'" /> <!-- :style="{ visibility: 'hidden' }" -->
+			<header-column-cell :gameName="'positief ➕'" /> <!-- :style="{ visibility: 'hidden' }" -->
 			<div v-for="(value, player) in stateStore.totalsPerSection.positief" :key="player">
 				<game-cell :result="value" :mode="'total'" />
 			</div>
 		</div>
 		<div class="total-row">
-			<header-column-cell :gameName="'Totaal:'" /> <!-- :style="{ visibility: 'hidden' }" -->
+			<header-column-cell :gameName="'totaal ➕/➖ 🟰'" /> <!-- :style="{ visibility: 'hidden' }" -->
 			<div v-for="(value, player) in stateStore.totalTotals" :key="player">
 				<game-cell :result="value" :mode="'total'" />
 			</div>
@@ -47,24 +47,26 @@
 	.total-row {
 		display: flex;
 		align-items: center;
-		margin-top: 0.5rem;
+		margin-top: 0rem;
 		margin-bottom: 0.5rem;
 	}
 
 	.player-row {
 		display: flex;
 		align-items: center;
-		margin-top: 0.5rem;
-		margin-bottom: 0.5rem;
+		margin-top: 0rem;
+		margin-bottom: 0rem;
 	}
 
 	.player-name {
 		display: flex;
 		align-items: center;
-		border: 1px solid gray;
-		width: 7.6rem;
-		height: 2.4rem;
-		font-size: 1.5rem;
+		border: 1px solid blue;
+		width: 8.09rem;
+		height: 2.3rem;
+		font-size: 1.3rem;
 		text-align: center;
+		background-color: #eee;
 	}
+
 </style>
