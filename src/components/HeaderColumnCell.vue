@@ -12,12 +12,16 @@ defineProps({
 		type: Boolean,
 		default: () => undefined
 	},
+	isTotal: {
+		type: Boolean,
+		default: () => false
+	}
 })
 </script>
 
 <template>
 	<div class="cell">
-		<h4>
+		<h4 :class="{isTotal: isTotal==true}">
 			<span>{{ gameName }}</span>
 			<span v-show="isChosen">{{ isCorrect ? "✔" : "✖" }}</span>
 		</h4>
@@ -42,4 +46,9 @@ defineProps({
 	display: flex;
 	justify-content: space-between;
 }
+
+.isTotal {
+	justify-content: flex-end !important;
+}
+
 </style>

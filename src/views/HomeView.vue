@@ -19,7 +19,7 @@
 					@gameChosen="(player, checked) => stateStore.setGameChosen('negatief', index, player, checked)" />
 		</div>
 		<div class="total-row">
-			<header-column-cell :gameName="'negatief ➖'" /> <!-- :style="{ visibility: 'hidden' }" -->
+			<header-column-cell :gameName="'negatief ➖'" :isTotal="true"/> <!-- :style="{ visibility: 'hidden' }" -->
 			<div v-for="(value, player) in stateStore.totalsPerSection.negatief" :key="player">
 				<game-cell :result="value" :mode="'total'" />
 			</div>
@@ -29,13 +29,13 @@
 				@gameChosen="(player, checked) => stateStore.setGameChosen('positief', index, player, checked)" />
 		</div>
 		<div class="total-row">
-			<header-column-cell :gameName="'positief ➕'" /> <!-- :style="{ visibility: 'hidden' }" -->
+			<header-column-cell :gameName="'positief ➕'" :isTotal="true"/> <!-- :style="{ visibility: 'hidden' }" -->
 			<div v-for="(value, player) in stateStore.totalsPerSection.positief" :key="player">
 				<game-cell :result="value" :mode="'total'" />
 			</div>
 		</div>
 		<div class="total-row">
-			<header-column-cell :gameName="'totaal ➕/➖ 🟰'" /> <!-- :style="{ visibility: 'hidden' }" -->
+			<header-column-cell :gameName="'totaal 🟰'" :isTotal="true"/>
 			<div v-for="(value, player) in stateStore.totalTotals" :key="player">
 				<game-cell :result="value" :mode="'total'" />
 			</div>
