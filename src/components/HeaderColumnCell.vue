@@ -20,7 +20,7 @@ defineProps({
 </script>
 
 <template>
-	<div class="cell">
+	<div class="cell" :class="{played: isCorrect && isChosen}">
 		<h4 :class="{isTotal: isTotal==true}">
 			<span>{{ gameName }}</span>
 			<span v-show="isChosen">{{ isCorrect ? "✔" : "✖" }}</span>
@@ -49,6 +49,10 @@ defineProps({
 
 .isTotal {
 	justify-content: flex-end !important;
+}
+
+.played {
+	background-color: lightgreen;
 }
 
 </style>

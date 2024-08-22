@@ -81,7 +81,7 @@ const styleObject = computed(() => props.mode === "input" ? { visibility: "visib
 }
 
 .result {
-	width: 2.5rem;
+	width: 2.7rem;
 	text-align: right;
 	flex: 1;
 	margin-left: 0.2rem;

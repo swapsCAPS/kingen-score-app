@@ -51,6 +51,10 @@
 		margin-bottom: 0.5rem;
 	}
 
+	.is-correct {
+		background-color: lightgreen;
+	}
+
 	.player-row {
 		display: flex;
 		align-items: center;
@@ -62,7 +66,7 @@
 		display: flex;
 		align-items: center;
 		border: 1px solid blue;
-		width: 8.09rem;
+		width: 8.29rem;
 		height: 2.3rem;
 		font-size: 1.3rem;
 		text-align: center;
