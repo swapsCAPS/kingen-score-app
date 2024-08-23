@@ -11,7 +11,7 @@
 	<main>
 		<div class="player-row">
 			<header-column-cell :gameName="'👑 Spelers 👑'" />
-			<div v-for="i in 4"> <input class="player-name" type="text" :placeholder="i"></div>
+			<div v-for="i in 4" :key="i"> <input class="player-name" type="text" :id="'Speler' + i"  :placeholder="'Speler ' + i"></div>
 		</div>
 
 		<div v-for="( game, index) in stateStore.games.negatief" :key="game.name">
